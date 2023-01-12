@@ -23,7 +23,7 @@ export const SignumCalendar = () => {
         {
             start: d1.toJSDate(),
             end: d1
-                .plus({day:1})
+                .plus({ day: 1 })
                 .toJSDate(),
             title: "Some title"
         }
@@ -56,19 +56,19 @@ export const SignumCalendar = () => {
             <div>
                 <Button
                     label="close modal"
-                    onClick={()=>setShowDialog(false)}
+                    onClick={() => setShowDialog(false)}
                 />
             </div>
         )
     }
-    const ColoredDateCellWrapper: React.ComponentType= (deneme:any) =>
+    const ColoredDateCellWrapper: React.ComponentType = (deneme: any) =>
         React.cloneElement(Children.only(deneme.children), {
             style: {
                 ...deneme.children.style,
                 backgroundColor: deneme.value < DateTime.now() ? 'lightgrey' : '',
             },
         });
-    
+
     // const Header: React.ComponentType = (deneme: any) =>
     // {
     //     return (
@@ -80,13 +80,13 @@ export const SignumCalendar = () => {
 
     const MonthEvent = () => {
         return (
-        <div style={{ backgroundColor: "red" }}>
-            <div style={{ backgroundColor: "black" }}>a</div>
-            <div style={{ backgroundColor: "orange" }}>b</div>
-        </div> )
+            <div style={{ backgroundColor: "red" }}>
+                <div style={{ backgroundColor: "black" }}>a</div>
+                <div style={{ backgroundColor: "orange" }}>b</div>
+            </div>)
     };
-    
-    
+
+
 
     const myCustomMonthDateHeader = ({ label, date }: DateHeaderProps) => {
         return {
@@ -97,7 +97,8 @@ export const SignumCalendar = () => {
 
     return (
         <div style={{
-        margin:"7%"}}>
+            margin: "7%"
+        }}>
             <div className="card">
 
                 <Dialog
@@ -136,18 +137,7 @@ export const SignumCalendar = () => {
                     </p>
                 </Dialog>
 
-                {/* <Calendar
-                    localizer={localizer}
-                    defaultDate={new Date()}
-                    defaultView="month"
-                    events={events}
-                    style={{ height: "100vh" }}
-                    selectable={true}
-                    max={moment().add(1, "week").toDate()}
-                    min={moment().subtract(1, "week").toDate()}
-                    onDoubleClickEvent={event => { console.log("event details", event) }}
 
-                /> */}
                 <DnDCalendar
                     defaultDate={DateTime.now().toJSDate()}
                     defaultView="month"
@@ -165,9 +155,16 @@ export const SignumCalendar = () => {
                     onSelectSlot={(slotInfo: SlotInfo) => {
                         console.log("slot info", slotInfo)
                         let d1 = DateTime.now().toLocal().toJSDate();
+                        let d2 = DateTime.now();
+                        let d3 = DateTime.local(2023, 1, 5, 1).toLocal().toJSDate();
+                        let d4 = DateTime.local(2023, 1, 5, 1).toLocal().toJSDate();
+                        let d5 = DateTime.local(2023, 1, 12, 5).toLocal().toJSDate();
                         console.log("date time now", DateTime.now());
                         console.log("date", d1);
-                        if (slotInfo.start < d1) {
+                        let arr = [d3,d4,d5]
+                        console.log("arr", arr)
+                        
+                        if (arr.find(() => { return slotInfo.start<d1 })) {
                             console.log("aaaaaaaa");
 
                         } else {
@@ -183,13 +180,13 @@ export const SignumCalendar = () => {
                         //     dateHeader: myCustomMonthDateHeader,
                         // },
                     }}
-                
-                
-            />
+
+
+                />
 
 
             </div>
-           
+
         </div>
     );
 
